@@ -1,0 +1,440 @@
+.footer {
+  position: relative;
+  margin-top: auto;
+
+  .footer-main {
+    padding: 4rem 0 2rem;
+
+    .footer-section {
+      .footer-logo {
+        .logo-img {
+          height: 50px;
+          width: auto;
+          object-fit: contain;
+          filter: brightness(0) invert(1);
+        }
+
+        .brand-name {
+          font-size: 1.75rem;
+          font-weight: 700;
+          color: var(--secondary-color);
+          margin: 0;
+        }
+      }
+
+      .footer-description {
+        color: var(--secondary-color);
+        line-height: 1.6;
+        font-size: 0.95rem;
+        opacity: 0.9;
+      }
+
+      .footer-title {
+        font-size: 1.1rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        color: white;
+        position: relative;
+        padding-bottom: 0.5rem;
+
+        &::after {
+          content: '';
+          position: absolute;
+          left: 0;
+          bottom: 0;
+          width: 40px;
+          height: 2px;
+          background-color: var(--secondary-color);
+        }
+      }
+
+      .footer-links {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+
+        li {
+          margin-bottom: 0.75rem;
+
+          a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            display: inline-block;
+            opacity: 0.85;
+
+            &:hover {
+              color: white;
+              opacity: 1;
+              padding-left: 5px;
+            }
+          }
+        }
+      }
+
+      .social-links {
+        h5 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: white;
+        }
+
+        .social-link {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          background-color: rgba(255, 255, 255, 0.1);
+          color: var(--secondary-color);
+          text-decoration: none;
+          transition: all 0.3s ease;
+          font-size: 1.2rem;
+
+          &:hover {
+            background-color: white;
+            color: var(--main-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  // Newsletter Section
+  .newsletter-section {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 2rem;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+
+    .newsletter-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.5rem;
+      color: white;
+    }
+
+    .newsletter-description {
+      color: var(--secondary-color);
+      opacity: 0.9;
+    }
+
+    .newsletter-form {
+      .input-group {
+        border-radius: 50px;
+        overflow: hidden;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+
+        .input-group-text {
+          padding: 0.75rem 1rem;
+          color: var(--main-color);
+          border: none;
+
+          i {
+            font-size: 1.2rem;
+          }
+        }
+
+        .form-control {
+          border: none;
+          padding: 0.75rem 1rem;
+          font-size: 0.95rem;
+
+          &:focus {
+            box-shadow: none;
+            outline: none;
+          }
+
+          &::placeholder {
+            color: #999;
+          }
+        }
+
+        .btn {
+          border: none;
+          padding: 0.75rem 2rem;
+          font-weight: 600;
+          background-color: white;
+          color: var(--main-color);
+          transition: all 0.3s ease;
+          white-space: nowrap;
+
+          &:hover {
+            background-color: var(--secondary-color);
+            transform: translateX(-2px);
+          }
+        }
+      }
+
+      .subscription-message {
+        font-size: 0.9rem;
+        padding: 0.5rem;
+        border-radius: 6px;
+        animation: slideDown 0.3s ease;
+
+        &.success {
+          color: #4caf50;
+          background-color: rgba(76, 175, 80, 0.1);
+        }
+
+        &.error {
+          color: #f44336;
+          background-color: rgba(244, 67, 54, 0.1);
+        }
+      }
+    }
+  }
+
+  // Footer Bottom
+  .footer-bottom {
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 1.5rem 0;
+    margin-top: 3rem;
+
+    p {
+      color: var(--secondary-color);
+      font-size: 0.9rem;
+      opacity: 0.9;
+
+      strong {
+        color: white;
+      }
+    }
+
+    .payment-methods {
+      color: var(--secondary-color);
+      font-size: 0.9rem;
+
+      .payment-icons {
+        .payment-icon {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 40px;
+          height: 28px;
+          background-color: white;
+          border-radius: 6px;
+          color: var(--main-color);
+          transition: all 0.3s ease;
+
+          i {
+            font-size: 1.2rem;
+          }
+
+          &:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+          }
+        }
+      }
+    }
+  }
+
+  // Scroll to Top Button
+  .scroll-to-top {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: var(--main-color);
+    color: white;
+    border: 2px solid white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+
+    &:hover {
+      background-color: white;
+      color: var(--main-color);
+      transform: translateY(-5px);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+    }
+
+    &:active {
+      transform: translateY(-3px);
+    }
+  }
+}
+
+// Animations
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+// Responsive Styles
+@media (max-width: 991.98px) {
+  .footer {
+    .footer-main {
+      padding: 3rem 0 1.5rem;
+
+      .footer-section {
+        margin-bottom: 2rem;
+
+        .footer-title {
+          font-size: 1rem;
+          margin-bottom: 1rem;
+        }
+      }
+    }
+
+    .newsletter-section {
+      padding: 1.5rem;
+
+      .newsletter-title {
+        font-size: 1.25rem;
+        text-align: center;
+      }
+
+      .newsletter-description {
+        text-align: center;
+      }
+
+      .newsletter-form {
+        .input-group {
+          .btn {
+            padding: 0.75rem 1.5rem;
+          }
+        }
+      }
+    }
+
+    .footer-bottom {
+      text-align: center;
+
+      .payment-methods {
+        margin-top: 1rem;
+      }
+    }
+  }
+}
+
+@media (max-width: 767.98px) {
+  .footer {
+    .footer-main {
+      .footer-section {
+        .footer-logo {
+          text-align: center;
+
+          .logo-img {
+            height: 40px;
+          }
+
+          .brand-name {
+            font-size: 1.5rem;
+          }
+        }
+
+        .footer-description {
+          text-align: center;
+        }
+
+        .social-links {
+          text-align: center;
+
+          .d-flex {
+            justify-content: center;
+          }
+        }
+
+        .footer-title {
+          &::after {
+            left: 50%;
+            transform: translateX(-50%);
+          }
+        }
+
+        .footer-links {
+          text-align: center;
+        }
+      }
+    }
+
+    .newsletter-section {
+      .newsletter-form {
+        .input-group {
+          flex-direction: column;
+          border-radius: 12px;
+
+          .input-group-text,
+          .form-control,
+          .btn {
+            border-radius: 0;
+          }
+
+          .input-group-text {
+            border-radius: 12px 12px 0 0;
+          }
+
+          .btn {
+            border-radius: 0 0 12px 12px;
+            width: 100%;
+          }
+        }
+      }
+    }
+
+    .scroll-to-top {
+      bottom: 20px;
+      right: 20px;
+      width: 45px;
+      height: 45px;
+      font-size: 1.25rem;
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .footer {
+    .footer-main {
+      padding: 2rem 0 1rem;
+    }
+
+    .newsletter-section {
+      padding: 1rem;
+      margin-top: 2rem !important;
+
+      .newsletter-title {
+        font-size: 1.1rem;
+      }
+
+      .newsletter-description {
+        font-size: 0.9rem;
+      }
+    }
+
+    .footer-bottom {
+      padding: 1rem 0;
+
+      p {
+        font-size: 0.85rem;
+      }
+
+      .payment-methods {
+        font-size: 0.85rem;
+
+        span {
+          display: block;
+          margin-bottom: 0.5rem;
+        }
+      }
+    }
+  }
+}

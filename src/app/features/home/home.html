@@ -1,0 +1,34 @@
+<section class="category-slider">
+  <swiper-container
+    class="swiper-wrapper"
+    slides-per-view="4"
+    navigation="true"
+    pagination='{"clickable": true}'
+    loop="true"
+    autoplay='{"delay": 2000 ,"disableOnInteraction": false}'
+    style="
+      --swiper-navigation-color: var(--main-color);
+      --swiper-pagination-color: var(--main-color);
+    "
+  >
+    @for (cat of categories(); track cat.id) {
+    <swiper-slide>
+      <div class="category-card" (click)="dishes(cat.id)">
+        <img [src]="cat.image" [alt]="cat.name" />
+        <h3 class="category-name main-color">{{ cat.name }}</h3>
+        <p class="category-count">{{ cat.dishes_count }} dishes</p>
+      </div>
+    </swiper-slide>
+    }
+  </swiper-container>
+</section>
+
+<div class="mt-4">
+  <h2 class="p-4">Chef's Recommended</h2>
+  <div class="d-flex justify-content-center flex-wrap c-gap">
+    @for (dish of recommended(); track dish.id) {
+    <app-dishes-card [dish]="dish"></app-dishes-card>
+
+    }
+  </div>
+</div>

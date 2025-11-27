@@ -1,0 +1,260 @@
+.dish-card {
+  width: 344px;
+  position: relative;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 4px 4px 25px 0px #0000001a;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  min-height: 223px;
+  display: flex;
+  flex-direction: column;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+
+    .dish-image {
+      transform: scale(1.05);
+    }
+  }
+
+  // Card Content
+  .dish-content {
+    padding: 1rem;
+    display: flex;
+    flex: 1;
+
+    .dish-left-card {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      flex-basis: min-content;
+      padding: 15px;
+      justify-content: space-around;
+    }
+
+    .dish-header {
+      margin-bottom: 0.75rem;
+
+      .dish-name {
+        font-size: 1.1rem;
+        font-weight: 700;
+        color: #333;
+        margin: 0 0 0.5rem 0;
+        line-height: 1.3;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+
+      .dish-description {
+        font-size: 0.85rem;
+        color: #666;
+        margin: 0;
+        line-height: 1.4;
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+      }
+    }
+
+    // Nutritional Info
+    .nutrition-info {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+
+      .nutrition-item {
+        display: flex;
+        align-items: center;
+        gap: 0.35rem;
+        font-size: 0.85rem;
+        color: #666;
+
+        i {
+          font-size: 1rem;
+        }
+      }
+    }
+
+    // Rating Section
+    .rating-section {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-bottom: 0.75rem;
+
+      .stars {
+        display: flex;
+        gap: 2px;
+
+        i {
+          font-size: 0.9rem;
+        }
+      }
+
+      .reviews-count {
+        font-size: 0.85rem;
+        color: #999;
+      }
+    }
+
+    // Card Footer
+    .card-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 0.5rem;
+
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 0.25rem;
+
+        .price-amount {
+          font-size: 1.25rem;
+          font-weight: 700;
+          color: #333;
+        }
+
+        .price-currency {
+          font-size: 0.85rem;
+          font-weight: 600;
+          color: #666;
+        }
+      }
+
+      .btn-add {
+        background-color: var(--main-color);
+        color: white;
+        border: none;
+        border-radius: 8px;
+        padding: 0.5rem 1.5rem;
+        font-weight: 600;
+        font-size: 0.9rem;
+        cursor: pointer;
+        transition: all 0.3s ease;
+
+        &:hover {
+          background-color: #054a1a;
+          transform: translateY(-2px);
+          box-shadow: 0 4px 12px rgba(6, 94, 33, 0.3);
+        }
+
+        &:active {
+          transform: translateY(0);
+        }
+      }
+      .favorite-btn {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        background: white;
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        z-index: 2;
+
+        i {
+          font-size: 1.1rem;
+          color: #999;
+          transition: color 0.3s ease;
+        }
+
+        &:hover {
+          transform: scale(1.1);
+          background: #fff0f0;
+
+          i {
+            color: #ff4444;
+          }
+        }
+
+        &.active {
+          background: #ff4444;
+
+          i {
+            color: white;
+          }
+        }
+      }
+    }
+
+    .dish-image-wrapper {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      .dish-image {
+        right: -5px;
+        position: absolute;
+        top: -40px;
+      }
+    }
+  }
+}
+
+// Responsive Design
+@media (max-width: 767.98px) {
+  .dish-card {
+    .dish-content {
+      padding: 0.875rem;
+
+      .dish-header {
+        .dish-name {
+          font-size: 1rem;
+        }
+
+        .dish-description {
+          font-size: 0.8rem;
+        }
+      }
+
+      .nutrition-info {
+        gap: 0.75rem;
+
+        .nutrition-item {
+          font-size: 0.8rem;
+        }
+      }
+
+      .card-footer {
+        .price {
+          .price-amount {
+            font-size: 1.1rem;
+          }
+        }
+
+        .btn-add {
+          padding: 0.4rem 1.25rem;
+          font-size: 0.85rem;
+        }
+        .favorite-btn {
+          width: 32px;
+          height: 32px;
+
+          i {
+            font-size: 1rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 575.98px) {
+  .dish-card {
+    .dish-image-wrapper {
+      height: 160px;
+    }
+
+    .category-badge {
+      font-size: 0.7rem;
+      padding: 3px 10px;
+    }
+  }
+}

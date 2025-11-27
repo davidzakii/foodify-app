@@ -1,0 +1,89 @@
+<footer class="footer bg-main-color text-white">
+  <!-- Main Footer Content -->
+  <div class="footer-main">
+    <div class="container">
+      <div class="row g-4">
+        <!-- Company Info Column -->
+        <div class="col-lg-4 col-md-6">
+          <div class="footer-section">
+            <div class="footer-logo mb-3">
+              <img src="images/logo.svg" alt="MyApp Logo" class="logo-img mb-3" />
+            </div>
+            <p class="footer-description">
+              Foodify — your go-to app for delicious meals, fresh ingredients, and fast delivery.
+              Discover chef-curated dishes, order from local restaurants, and enjoy convenient,
+              contactless delivery.
+            </p>
+
+            <!-- Social Links -->
+            <div class="social-links mt-4">
+              <h5 class="mb-3">Follow Us</h5>
+              <div class="d-flex gap-2">
+                @for (social of socialLinks; track social.name) {
+                <a
+                  [href]="social.url"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="social-link"
+                  [attr.aria-label]="social.name"
+                >
+                  <i [class]="'fa-brands ' + social.icon"></i>
+                </a>
+                }
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Footer Links Columns -->
+        @for (section of footerSections; track section.title) {
+        <div class="col-lg-2 col-md-6 col-6">
+          <div class="footer-section">
+            <h5 class="footer-title">{{ section.title }}</h5>
+            <ul class="footer-links">
+              @for (link of section.links; track link.title) {
+              <li>
+                <a [routerLink]="link.url">{{ link.title }}</a>
+              </li>
+              }
+            </ul>
+          </div>
+        </div>
+        }
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Bottom -->
+  <div class="footer-bottom">
+    <div class="container">
+      <div class="row align-items-center g-3">
+        <!-- Copyright -->
+        <div class="col-lg-6 col-md-12 text-center text-lg-start">
+          <p class="mb-0">
+            &copy; {{ currentYear }} <strong>Foodify</strong>. All rights reserved.
+          </p>
+        </div>
+
+        <!-- Payment Methods -->
+        <div class="col-lg-6 col-md-12">
+          <div class="payment-methods text-center text-lg-end">
+            <span class="me-3 d-none d-md-inline">We Accept:</span>
+            <div class="payment-icons d-inline-flex gap-2">
+              @for (payment of paymentMethods; track payment.name) {
+              <div class="payment-icon" [attr.title]="payment.name">
+                <i [class]="'fa-brands ' + payment.icon"></i>
+              </div>
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Scroll to Top Button -->
+  <button class="scroll-to-top" (click)="scrollToTop()" aria-label="Scroll to top">
+    <i class="bi bi-arrow-up"></i>
+  </button>
+</footer>

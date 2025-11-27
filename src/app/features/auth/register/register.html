@@ -1,0 +1,160 @@
+<div class="register-page">
+  <div class="register-container">
+    <!-- Curved Header -->
+    <div class="register-header">
+      <h1 class="register-title">Create Account</h1>
+    </div>
+
+    <!-- Register Form -->
+    <div class="register-form-wrapper">
+      <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Full Name Field -->
+        <div class="form-group">
+          <label for="fullName" class="form-label">Full Name</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fa-solid fa-user"></i>
+            </span>
+            <input
+              type="text"
+              id="fullName"
+              class="form-control"
+              placeholder="Enter your Full Name"
+              formControlName="full_name"
+              [class.is-invalid]="fullName?.invalid && (fullName?.touched || isSubmitted())"
+            />
+          </div>
+
+          @if (fullName?.invalid && (fullName?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              {{ getErrorMessage('full_name') }}
+            </small>
+          </div>
+          }
+        </div>
+
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fas fa-phone"></i>
+            </span>
+            <input
+              type="tel"
+              id="phoneNumber"
+              class="form-control"
+              placeholder="Enter your Phone Number"
+              formControlName="phone"
+              (input)="onPhoneInput($event)"
+              maxlength="11"
+              [class.is-invalid]="phone?.invalid && (phone?.touched || isSubmitted())"
+            />
+          </div>
+
+          @if (phone?.invalid && (phone?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              {{ getErrorMessage('phone') }}
+            </small>
+          </div>
+          }
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fa-solid fa-key"></i>
+            </span>
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              id="password"
+              class="form-control"
+              placeholder="Enter your Password"
+              formControlName="password"
+              [class.is-invalid]="password?.invalid && (password?.touched || isSubmitted())"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility('password')"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            >
+              <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+
+          @if (password?.invalid && (password?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              {{ getErrorMessage('password') }}
+            </small>
+          </div>
+          }
+        </div>
+
+        <!-- Confirm Password Field -->
+        <div class="form-group">
+          <label for="confirmPassword" class="form-label">Confirm Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fa-solid fa-key"></i>
+            </span>
+            <input
+              [type]="showConfirmPassword() ? 'text' : 'password'"
+              id="confirmPassword"
+              class="form-control"
+              placeholder="Enter your Password"
+              formControlName="password_confirmation"
+              [class.is-invalid]="
+                passwordConfirmation?.invalid && (passwordConfirmation?.touched || isSubmitted())
+              "
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility('confirm')"
+              [attr.aria-label]="showConfirmPassword() ? 'Hide password' : 'Show password'"
+            >
+              <i [class]="showConfirmPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+
+          @if (passwordConfirmation?.invalid && (passwordConfirmation?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              {{ getErrorMessage('password_confirmation') }}
+            </small>
+          </div>
+          }
+        </div>
+
+        <!-- Continue Button -->
+        <button type="submit" class="btn btn-main" [disabled]="isLoading()">
+          @if (isLoading()) {
+          <span
+            class="spinner-border spinner-border-sm me-2"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Creating Account... } @else { Create Account }
+        </button>
+
+        <!-- Login Link -->
+        <div class="login-link">
+          <p class="mb-0">
+            Already have an account?
+            <a routerLink="/login" class="login-link-text text-danger me-2">Login</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

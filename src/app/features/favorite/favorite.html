@@ -1,0 +1,14 @@
+@if(favorites().length === 0){
+<div class="favorites-empty">
+  <div class="d-flex justify-content-center align-items-center h-75">
+    <img src="images/tag-favorites.svg" alt="tag1" class="c-translate" />
+    <img src="images/tag-favortes-2.svg" alt="tag2" />
+  </div>
+  <p class="text-center fw-bold">
+    Discover healthy meals and add your favorites to find them easily later
+  </p>
+  <div class="d-flex justify-content-center">
+    <button type="button" class="btn-main w-25" (click)="goToCategory()">Explore Categories</button>
+  </div>
+</div>
+}@else { }

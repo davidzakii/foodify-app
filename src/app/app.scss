@@ -1,0 +1,23 @@
+.spinner-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+/* الصورة تتحرك مع الـ spinner */
+.spinner-logo {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  animation: spin-logo 1s linear infinite; /* حركة دوران */
+}
+
+@keyframes spin-logo {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

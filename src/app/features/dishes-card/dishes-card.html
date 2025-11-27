@@ -1,0 +1,114 @@
+<!-- <div class="dish-card">
+  <div class="category-badge">
+    {{ dish.category }}
+  </div>
+
+  <div class="dish-content">
+    <div>
+      <div class="dish-header">
+        <h3 class="dish-name">{{ dish.name }}</h3>
+        <p class="dish-description">{{ dish.description }}</p>
+      </div>
+
+      <div class="nutrition-info">
+        <div class="nutrition-item">
+          <i class="bi bi-fire text-danger"></i>
+          <span>{{ dish.kcal }} Kcal</span>
+        </div>
+        <div class="nutrition-item">
+          <i class="bi bi-egg text-warning"></i>
+          <span>{{ dish.protein }}</span>
+        </div>
+      </div>
+      <div class="rating-section">
+        <div class="stars">
+          @for (star of stars; track $index) { @if (star) {
+          <i class="fa-solid fa-star text-warning"></i>
+          } @else {
+          <i class="fa-regular fa-star"></i>
+          } }
+        </div>
+        <span class="reviews-count">({{ dish.reviews }})</span>
+      </div>
+    </div>
+    <div class="dish-image-wrapper">
+      <img
+        [src]="dish.image"
+        [alt]="dish.name"
+        class="dish-image"
+        loading="lazy"
+        (error)="$event.target.src = 'assets/images/placeholder.png'"
+      />
+      <div class="card-footer">
+        <div class="price">
+          <span class="price-amount">{{ dish.price }}</span>
+          <span class="price-currency">{{ currency }}</span>
+        </div>
+        <button
+          class="favorite-btn"
+          (click)="onToggleFavorite()"
+          [class.active]="isFavorite"
+          aria-label="Add to favorites"
+        >
+          <i class="fa-heart" [class.fa-regular]="!isFavorite" [class.fa-solid]="isFavorite"></i>
+        </button>
+        <button class="btn btn-add" (click)="onAddToCart()">Add</button>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+<div class="dish-card my-3">
+  <div class="dish-content">
+    <div class="dish-left-card">
+      <div class="dish-header">
+        <h3 class="dish-name">{{ dish.name }}</h3>
+        <p class="dish-description">{{ dish.description }}</p>
+      </div>
+      <div class="price">
+        <span class="price-amount">{{ dish.price }}</span>
+        <span class="price-currency">{{ currency }}</span>
+      </div>
+      <div class="rating-section">
+        <div class="stars">
+          @for (star of stars; track $index) { @if (star) {
+          <i class="fa-solid fa-star text-warning"></i>
+          } @else {
+          <i class="fa-regular fa-star"></i>
+          } }
+        </div>
+        <span class="reviews-count">({{ dish.reviews }})</span>
+      </div>
+    </div>
+    <div class="dish-image-wrapper">
+      <img
+        [src]="dish.image"
+        [alt]="dish.name"
+        class="dish-image"
+        loading="lazy"
+        (error)="$event.target.src = 'assets/images/placeholder.png'"
+      />
+      <div class="nutrition-info">
+        <div class="nutrition-item">
+          <i class="bi bi-fire text-danger"></i>
+          <span>{{ dish.kcal }} Kcal</span>
+        </div>
+        <div class="nutrition-item">
+          <i class="bi bi-egg text-warning"></i>
+          <span>{{ dish.protein }}</span>
+        </div>
+      </div>
+      <div class="card-footer">
+        <button
+          class="favorite-btn"
+          (click)="onToggleFavorite()"
+          [class.active]="isFavorite"
+          aria-label="Add to favorites"
+        >
+          <i class="fa-heart" [class.fa-regular]="!isFavorite" [class.fa-solid]="isFavorite"></i>
+        </button>
+        <button class="btn btn-add" (click)="onAddToCart()">Add</button>
+      </div>
+    </div>
+  </div>
+</div>

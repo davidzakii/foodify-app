@@ -1,0 +1,23 @@
+@if(isBrowser){
+<router-outlet></router-outlet>
+<ngx-spinner
+  bdColor="rgba(0,0,0,0.3)"
+  size="medium"
+  color="#065E21"
+  type="ball-spin-clockwise"
+  [fullScreen]="true"
+>
+</ngx-spinner>
+<!-- <ngx-spinner
+  bdColor="rgba(0,0,0,0.3)"
+  size="medium"
+  color="#fff"
+  type="ball-spin-clockwise"
+  [fullScreen]="true"
+>
+  <div class="spinner-wrapper">
+    <img src="images/logo.svg" alt="Logo" class="spinner-logo" />
+  </div>
+</ngx-spinner> -->
+}
+<ngx-sonner-toaster richColors position="bottom-center" closeButton />

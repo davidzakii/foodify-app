@@ -1,0 +1,126 @@
+<div class="login-page">
+  <div class="login-container">
+    <!-- Curved Header -->
+    <div class="login-header">
+      <h1 class="login-title">Login</h1>
+    </div>
+
+    <!-- Login Form -->
+    <div class="login-form-wrapper">
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" novalidate>
+        <!-- Phone Number Field -->
+        <div class="form-group">
+          <label for="phoneNumber" class="form-label">Phone Number</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fas fa-phone"></i>
+            </span>
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
+              placeholder="Enter your Phone Number"
+              formControlName="phone"
+              (input)="onPhoneInput($event)"
+              maxlength="15"
+              [class.is-invalid]="phone?.invalid && (phone?.touched || isSubmitted())"
+            />
+          </div>
+
+          <!-- Validation Messages -->
+          @if (phone?.invalid && (phone?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            @if (hasError('phoneNumber', 'required')) {
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              Phone number is required
+            </small>
+            } @if (hasError('phoneNumber', 'pattern') || hasError('phoneNumber', 'minLength')) {
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              Please enter a valid phone number (10-15 digits)
+            </small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Password Field -->
+        <div class="form-group">
+          <label for="password" class="form-label">Password</label>
+          <div class="input-wrapper">
+            <span class="input-icon">
+              <i class="fa-solid fa-key"></i>
+            </span>
+            <input
+              [type]="showPassword() ? 'text' : 'password'"
+              id="password"
+              class="form-control"
+              placeholder="Enter Your Password"
+              formControlName="password"
+              [class.is-invalid]="password?.invalid && (password?.touched || isSubmitted())"
+            />
+            <button
+              type="button"
+              class="password-toggle"
+              (click)="togglePasswordVisibility()"
+              [attr.aria-label]="showPassword() ? 'Hide password' : 'Show password'"
+            >
+              <i [class]="showPassword() ? 'fas fa-eye-slash' : 'fas fa-eye'"></i>
+            </button>
+          </div>
+
+          <!-- Validation Messages -->
+          @if (password?.invalid && (password?.touched || isSubmitted())) {
+          <div class="validation-messages">
+            @if (hasError('password', 'required')) {
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              Password is required
+            </small>
+            } @if (hasError('password', 'minLength')) {
+            <small class="text-danger">
+              <i class="fa-solid fa-exclamation"></i>
+              Password must be at least 6 characters
+            </small>
+            }
+          </div>
+          }
+        </div>
+
+        <!-- Remember Me & Forgot Password -->
+        <div class="form-options">
+          <div class="form-check">
+            <input
+              type="checkbox"
+              class="form-check-input"
+              id="rememberMe"
+              formControlName="rememberMe"
+            />
+            <label class="form-check-label" for="rememberMe"> Remember Me </label>
+          </div>
+          <a class="forgot-password-link" routerLink="/forgot-password"> Forget your password? </a>
+        </div>
+
+        <!-- Login Button -->
+        <button type="submit" class="btn btn-main" [disabled]="isLoading()">
+          @if (isLoading()) {
+          <span
+            class="spinner-border spinner-border-sm me-2"
+            role="status"
+            aria-hidden="true"
+          ></span>
+          Logging in... } @else { Login }
+        </button>
+
+        <!-- Sign Up Link -->
+        <div class="signup-link">
+          <p class="mb-0">
+            Don't Have An Account?
+            <a routerLink="/register" class="signup-link-text text-danger me-2">Sign Up</a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

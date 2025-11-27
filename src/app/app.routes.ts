@@ -1,0 +1,65 @@
+import { Routes } from '@angular/router';
+
+export const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'login',
+    pathMatch: 'full',
+  },
+  {
+    path: '',
+    loadComponent: () => import('./shared/components/layout/layout').then((m) => m.Layout),
+    children: [
+      {
+        path: '',
+        redirectTo: 'home',
+        pathMatch: 'full',
+      },
+      {
+        path: 'home',
+        loadComponent: () => import('./features/home/home').then((m) => m.Home),
+      },
+      {
+        path: 'categories',
+        loadComponent: () => import('./features/categories/categories').then((m) => m.Categories),
+      },
+      {
+        path: 'search',
+        loadComponent: () =>
+          import('./features/dishes-filter/dishes-filter').then((m) => m.DishesFilter),
+      },
+      {
+        path: 'favorites',
+        loadComponent: () => import('./features/favorite/favorite').then((m) => m.Favorite),
+      },
+    ],
+  },
+
+  {
+    path: 'login',
+    loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
+  },
+  {
+    path: 'register',
+    loadComponent: () => import('./features/auth/register/register').then((m) => m.Register),
+  },
+  {
+    path: 'forgot-password',
+    loadComponent: () =>
+      import('./features/auth/forgot-password/forgot-password').then((m) => m.ForgotPassword),
+  },
+  {
+    path: 'verify-otp/:phoneNumber',
+    loadComponent: () => import('./features/auth/verify-otp/verify-otp').then((m) => m.VerifyOtp),
+  },
+  {
+    path: 'reset-password/:phoneNumber',
+    loadComponent: () =>
+      import('./features/auth/reset-password/reset-password').then((m) => m.ResetPassword),
+  },
+  {
+    path: '**',
+    loadComponent: () =>
+      import('./shared/components/not-found-page/not-found-page').then((m) => m.NotFoundPage),
+  },
+];

@@ -1,0 +1,133 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-main-color sticky-top">
+  <div class="container-fluid">
+    <!-- Logo -->
+    <a class="navbar-brand d-flex align-items-center" routerLink="/home">
+      <img src="images/logo.svg" alt="Logo" class="logo-img" />
+    </a>
+
+    <!-- Hamburger Toggle Button -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarContent"
+      aria-controls="navbarContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Navbar Content -->
+    <div class="collapse navbar-collapse" id="navbarContent">
+      <!-- Left Side Navigation Links -->
+      <ul class="navbar-nav me-3 mb-2 mb-lg-0"></ul>
+
+      <!-- Search Bar (Middle) -->
+      <form class="search-form flex-grow-1 mx-lg-3 my-2 my-lg-0" (ngSubmit)="onSearch()">
+        <div class="search-wrapper">
+          <i class="bi bi-search search-icon"></i>
+          <input
+            type="search"
+            class="form-control search-input"
+            placeholder="Search products, categories..."
+            [(ngModel)]="searchQuery"
+            name="searchInput"
+            aria-label="Search"
+          />
+          @if (searchQuery) {
+          <button
+            type="button"
+            class="btn-clear-search"
+            (click)="clearSearch()"
+            aria-label="Clear search"
+          >
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+          }
+          <button type="submit" class="btn-search d-none d-lg-inline-block">Search</button>
+        </div>
+      </form>
+
+      <!-- Right Side Icons and Actions -->
+      <ul class="navbar-nav ms-auto align-items-lg-center">
+        <li class="nav-item">
+          <a class="nav-link nav-icon-link" routerLink="/categories" routerLinkActive="active">
+            <i class="bi bi-grid-3x3-gap-fill me-1"></i>
+            <span>Categories</span>
+          </a>
+        </li>
+
+        <!-- Favorites Icon -->
+        <li class="nav-item">
+          <a class="nav-link nav-icon-link" routerLink="/favorites" routerLinkActive="active">
+            <i class="fa-regular fa-heart"></i>
+            @if (favoritesCount() > 0) {
+            <span class="badge bg-danger badge-sm">{{ favoritesCount() }}</span>
+            }
+          </a>
+        </li>
+        <!-- Cart Icon -->
+        <li class="nav-item">
+          <a class="nav-link nav-icon-link" routerLink="/cart" routerLinkActive="active">
+            <img class="icon-label" src="images/shopping-cart.svg" alt="Shopping-cart" />
+            @if (cartCount() > 0) {
+            <span class="badge bg-danger badge-sm">{{ cartCount() }}</span>
+            }
+          </a>
+        </li>
+
+        <!-- Divider -->
+        <li class="nav-divider d-none d-lg-block"></li>
+        <!-- Logged In State -->
+        @if (isLoggedIn() && user()) {
+        <!-- Share Button -->
+        <li class="nav-item">
+          <button class="nav-link nav-icon-link btn btn-link" (click)="onShare()" title="Share">
+            <i class="fa-regular fa-bell"></i>
+            <span class="badge bg-danger badge-sm">{{ cartCount() }}</span>
+          </button>
+        </li>
+
+        <!-- User Profile Dropdown -->
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle d-flex align-items-center user-profile"
+            href="#"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img src="images/user-avatar.webp" [alt]="user()!.name" class="user-avatar me-2" />
+            <span class="user-name d-none d-lg-inline">{{ user()!.name }}</span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/profile">
+                <i class="bi bi-person me-2"></i>Profile
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/settings">
+                <i class="bi bi-gear me-2"></i>Settings
+              </a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/orders">
+                <i class="bi bi-bag me-2"></i>My Orders
+              </a>
+            </li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <button class="dropdown-item" (click)="logout()">
+                <i class="bi bi-box-arrow-right me-2"></i>Logout
+              </button>
+            </li>
+          </ul>
+        </li>
+        }
+      </ul>
+    </div>
+  </div>
+</nav>
