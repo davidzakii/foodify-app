@@ -1,0 +1,12 @@
+@if(dishes().length === 0){
+<h2 class="p-5">No exists diahes</h2>
+}@else{
+<div class="mt-4">
+  <h2 class="p-4">{{ categoryName() }}</h2>
+  <div class="d-flex justify-content-center flex-wrap c-gap">
+    @for (dish of dishes(); track dish.id) {
+    <app-dishes-card [dish]="dish"></app-dishes-card>
+    }
+  </div>
+</div>
+}

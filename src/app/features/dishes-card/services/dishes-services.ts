@@ -9,8 +9,10 @@ import { IDish } from '../interfaces/Idish';
 })
 export class DishesServices {
   private http = inject(HttpClient);
-  getDishes(categoryId: number, search: string): Observable<any> {
-    return this.http.get<any>(`${environment.endpoints.dishes.getDishes(categoryId)}${search}`);
+  getDishes(categoryId: number, search: string): Observable<{ data: IDish[] }> {
+    return this.http.get<{ data: IDish[] }>(
+      `${environment.endpoints.dishes.getDishes(categoryId)}${search}`
+    );
   }
   getRecommended(): Observable<{ data: IDish[] }> {
     return this.http.get<{ data: IDish[] }>(`${environment.endpoints.dishes.recommended}`);

@@ -45,6 +45,6 @@ export class Home implements OnInit {
       });
   }
   dishes(catId: number) {
-    this.router.navigate;
+    this.router.navigate(['/dishes', catId]);
   }
 }

@@ -23,4 +23,8 @@ export class Categories implements OnInit {
         this.categories.set(res.data);
       });
   }
+
+  dishesCat(catId: number) {
+    this.router.navigate(['/dishes', catId]);
+  }
 }

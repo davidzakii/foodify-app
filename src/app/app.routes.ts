@@ -32,6 +32,13 @@ export const routes: Routes = [
         path: 'favorites',
         loadComponent: () => import('./features/favorite/favorite').then((m) => m.Favorite),
       },
+      {
+        path: 'dishes/:catId',
+        loadComponent: () =>
+          import('./features/dishes-according-category/dishes-according-category').then(
+            (m) => m.DishesAccordingCategory
+          ),
+      },
     ],
   },
 
