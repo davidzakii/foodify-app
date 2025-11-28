@@ -1,4 +1,4 @@
-<div class="row g-0">
+<div class="row vh-100 g-0">
   <div class="login-page col-md-12 col-lg-6">
     <div class="login-container">
       <!-- Curved Header -->
@@ -31,12 +31,12 @@
             <!-- Validation Messages -->
             @if (phone?.invalid && (phone?.touched || isSubmitted())) {
             <div class="validation-messages">
-              @if (hasError('phoneNumber', 'required')) {
+              @if (hasError('phone', 'required')) {
               <small class="text-danger">
                 <i class="fa-solid fa-exclamation"></i>
                 Phone number is required
               </small>
-              } @if (hasError('phoneNumber', 'pattern') || hasError('phoneNumber', 'minLength')) {
+              } @if (hasError('phone', 'pattern') || hasError('phone', 'minLength')) {
               <small class="text-danger">
                 <i class="fa-solid fa-exclamation"></i>
                 Please enter a valid phone number (10-15 digits)
@@ -127,5 +127,9 @@
       </div>
     </div>
   </div>
-  <div class="c-bg col-6"></div>
+  <div class="c-bg col-6">
+    <div class="w-100 h-100 p-0 c-opacity d-flex justify-content-center align-items-center">
+      <p class="text-white c-p">Your body deserves the best ,let’s start together.</p>
+    </div>
+  </div>
 </div>

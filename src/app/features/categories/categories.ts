@@ -1,8 +1,8 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { ICategory } from './interfaces/icategory';
-import { Categories as CategoryService } from '../categories/services/categories';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { CategoriesServices } from './services/categories';
 
 @Component({
   selector: 'app-categories',
@@ -11,7 +11,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
   styleUrl: './categories.scss',
 })
 export class Categories implements OnInit {
-  private categoriesService = inject(CategoryService);
+  private categoriesService = inject(CategoriesServices);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);
   categories = signal<ICategory[]>([]);

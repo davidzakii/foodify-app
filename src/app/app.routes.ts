@@ -1,4 +1,6 @@
 import { Routes } from '@angular/router';
+import { afterLoginGuard } from './core/guards/after-login-guard';
+import { authGuard } from './core/guards/auth-guard';
 
 export const routes: Routes = [
   {
@@ -9,6 +11,7 @@ export const routes: Routes = [
   {
     path: '',
     loadComponent: () => import('./shared/components/layout/layout').then((m) => m.Layout),
+    canActivate: [authGuard],
     children: [
       {
         path: '',
@@ -45,24 +48,29 @@ export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () => import('./features/auth/login/login').then((m) => m.Login),
+    canActivate: [afterLoginGuard],
   },
   {
     path: 'register',
     loadComponent: () => import('./features/auth/register/register').then((m) => m.Register),
+    canActivate: [afterLoginGuard],
   },
   {
     path: 'forgot-password',
     loadComponent: () =>
       import('./features/auth/forgot-password/forgot-password').then((m) => m.ForgotPassword),
+    canActivate: [afterLoginGuard],
   },
   {
     path: 'verify-otp/:phoneNumber',
     loadComponent: () => import('./features/auth/verify-otp/verify-otp').then((m) => m.VerifyOtp),
+    canActivate: [afterLoginGuard],
   },
   {
     path: 'reset-password/:phoneNumber',
     loadComponent: () =>
       import('./features/auth/reset-password/reset-password').then((m) => m.ResetPassword),
+    canActivate: [afterLoginGuard],
   },
   {
     path: '**',

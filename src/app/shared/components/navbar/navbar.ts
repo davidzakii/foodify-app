@@ -46,7 +46,9 @@ export class Navbar {
 
   onSearch(): void {
     if (this.searchQuery.trim()) {
-      this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+      this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+        this.router.navigate(['/search'], { queryParams: { q: this.searchQuery } });
+      });
     }
   }
 

@@ -1,83 +1,90 @@
-<div class="login-page">
-  <div class="login-container">
-    <!-- Curved Header -->
-    <div class="login-header">
-      <h1 class="login-title">Enter Otp</h1>
+<div class="row vh-100 g-0">
+  <div class="login-page col-md-12 col-lg-6">
+    <div class="login-container">
+      <!-- Curved Header -->
+      <div class="login-header">
+        <h1 class="login-title">Enter Otp</h1>
+      </div>
+
+      <!-- Login Form -->
+      <div class="login-form-wrapper">
+        <p>Please Enter the OTP to your phone number : +2{{ phoneNumber }}</p>
+        <form class="mx-3" #verifyForm="ngForm" (ngSubmit)="submit(verifyForm)" novalidate>
+          <div class="input-group">
+            <input
+              #number1="ngModel"
+              ngModel
+              #number1Input
+              type="text"
+              class="form-control"
+              name="number1"
+              id="number1"
+              required
+              maxlength="1"
+              (input)="moveToNext($event, number2Input)"
+            />
+            <input
+              #number2="ngModel"
+              #number2Input
+              ngModel
+              type="text"
+              class="form-control"
+              name="number2"
+              id="number2"
+              required
+              maxlength="1"
+              (input)="moveToNext($event, number3Input)"
+              (keydown)="moveToPrev($event, number1Input)"
+            />
+            <input
+              #number3="ngModel"
+              #number3Input
+              ngModel
+              type="text"
+              class="form-control"
+              name="number3"
+              id="number3"
+              required
+              maxlength="1"
+              (input)="moveToNext($event, number4Input)"
+              (keydown)="moveToPrev($event, number2Input)"
+            />
+            <input
+              #number4="ngModel"
+              #number4Input
+              ngModel
+              type="text"
+              class="form-control"
+              name="number4"
+              id="number4"
+              required
+              maxlength="1"
+              (keydown)="moveToPrev($event, number3Input)"
+            />
+          </div>
+
+          <p class="text-center">
+            Resend code in @if(countdown() > 0){
+            <span class="main-color">{{ countdown() }}</span>
+            } @if(countdown() === 0){
+            <a class="main-color" style="cursor: pointer" (click)="resendCode()"> Resend </a>
+            } s
+          </p>
+
+          <button
+            class="btn-main"
+            type="submit"
+            [ngClass]="verifyForm.invalid ? 'btn-invalid' : 'btn-main'"
+          >
+            Verify
+          </button>
+        </form>
+      </div>
     </div>
-
-    <!-- Login Form -->
-    <div class="login-form-wrapper">
-      <p>Please Enter the OTP to your phone number : +2{{ phoneNumber }}</p>
-      <form class="mx-3" #verifyForm="ngForm" (ngSubmit)="submit(verifyForm)" novalidate>
-        <div class="input-group">
-          <input
-            #number1="ngModel"
-            ngModel
-            #number1Input
-            type="text"
-            class="form-control"
-            name="number1"
-            id="number1"
-            required
-            maxlength="1"
-            (input)="moveToNext($event, number2Input)"
-          />
-          <input
-            #number2="ngModel"
-            #number2Input
-            ngModel
-            type="text"
-            class="form-control"
-            name="number2"
-            id="number2"
-            required
-            maxlength="1"
-            (input)="moveToNext($event, number3Input)"
-            (keydown)="moveToPrev($event, number1Input)"
-          />
-          <input
-            #number3="ngModel"
-            #number3Input
-            ngModel
-            type="text"
-            class="form-control"
-            name="number3"
-            id="number3"
-            required
-            maxlength="1"
-            (input)="moveToNext($event, number4Input)"
-            (keydown)="moveToPrev($event, number2Input)"
-          />
-          <input
-            #number4="ngModel"
-            #number4Input
-            ngModel
-            type="text"
-            class="form-control"
-            name="number4"
-            id="number4"
-            required
-            maxlength="1"
-            (keydown)="moveToPrev($event, number3Input)"
-          />
-        </div>
-
-        <p class="text-center">
-          Resend code in @if(countdown() > 0){
-          <span class="main-color">{{ countdown() }}</span>
-          } @if(countdown() === 0){
-          <a class="main-color" style="cursor: pointer" (click)="resendCode()"> Resend </a>
-          } s
-        </p>
-
-        <button
-          class="btn-main"
-          type="submit"
-          [ngClass]="verifyForm.invalid ? 'btn-invalid' : 'btn-main'"
-        >
-          Verify
-        </button>
-      </form>
+  </div>
+  <div class="c-bg col-6">
+    <div class="w-100 h-100 p-0 c-opacity d-flex justify-content-center align-items-center">
+      <p class="text-white c-p">Your body deserves the best ,let’s start together.</p>
     </div>
   </div>
 </div>

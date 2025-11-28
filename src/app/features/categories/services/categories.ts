@@ -7,7 +7,7 @@ import { ICategory } from '../interfaces/icategory';
 @Injectable({
   providedIn: 'root',
 })
-export class Categories {
+export class CategoriesServices {
   private http = inject(HttpClient);
   getCategory(search: string): Observable<{ data: ICategory[] }> {
     return this.http.get<{ data: ICategory[] }>(

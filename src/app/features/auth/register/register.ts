@@ -208,30 +208,30 @@ export class Register {
 
       const registerData: IRegister = this.registerForm.value;
 
-      this.authService.register(registerData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-        next: (response) => {
-          this.isLoading.set(false);
+      this.authService
+        .register(registerData)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: (response) => {
+            this.isLoading.set(false);
 
-          this.isSubmitted.set(false);
-          const phone = this.phone?.value;
+            this.isSubmitted.set(false);
+            const phone = this.phone?.value;
 
-          if (phone) {
-            this.router.navigate(['/verify-otp', phone]);
-          } else {
-            toast.error('please enter your phone number');
-          }
-          toast.success(response.message);
-          this.registerForm.reset();
-        },
-        error: (error) => {
-          this.isLoading.set(false);
-          const errorMessage = error?.error?.message || 'Registration failed. Please try again.';
-          toast.error(errorMessage);
-          console.error('Registration error:', error);
-        },
-      });
+            if (phone) {
+              this.router.navigate(['/verify-otp', phone]);
+            } else {
+              toast.error('please enter your phone number');
+            }
+            toast.success(response.message);
+            this.registerForm.reset();
+          },
+          error: () => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+          },
+        });
     } else {
-      // Mark all fields as touched to show validation errors
       Object.keys(this.registerForm.controls).forEach((key) => {
         this.registerForm.get(key)?.markAsTouched();
       });

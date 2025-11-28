@@ -62,19 +62,24 @@ export class Login {
       this.authService
         .login(phone, password)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((res) => {
-          console.log(this.loginForm.value);
-          if (this.loginForm.value.rememberMe) {
-            localStorage.setItem('rememberMe', 'true');
-          }
-          if (res.access_token) {
-            localStorage.setItem('token', res.access_token);
-          }
-          this.isLoading.set(false);
-          this.isSubmitted.set(false);
-          this.loginForm.reset();
-          toast.success(res.message);
-          this.router.navigate(['/home']);
+        .subscribe({
+          next: (res) => {
+            if (this.loginForm.value.rememberMe) {
+              localStorage.setItem('rememberMe', 'true');
+            }
+            if (res.access_token) {
+              localStorage.setItem('token', res.access_token);
+            }
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+            this.loginForm.reset();
+            toast.success(res.message);
+            this.router.navigate(['/home']);
+          },
+          error: () => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+          },
         });
     } else {
       this.isLoading.set(false);

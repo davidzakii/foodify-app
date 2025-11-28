@@ -6,7 +6,7 @@ import {
   OnInit,
   signal,
 } from '@angular/core';
-import { Categories } from '../categories/services/categories';
+import { CategoriesServices } from '../categories/services/categories';
 import { ICategory } from '../categories/interfaces/icategory';
 import { Router } from '@angular/router';
 import { IDish } from '../dishes-card/interfaces/Idish';
@@ -23,7 +23,7 @@ import { DishesServices } from '../dishes-card/services/dishes-services';
   styleUrl: './home.scss',
 })
 export class Home implements OnInit {
-  private categoriesService = inject(Categories);
+  private categoriesService = inject(CategoriesServices);
   private dishesService = inject(DishesServices);
   private router = inject(Router);
   private destroyRef = inject(DestroyRef);

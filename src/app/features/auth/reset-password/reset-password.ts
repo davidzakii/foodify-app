@@ -193,9 +193,7 @@ export class ResetPassword {
 
     if (this.registerForm.valid) {
       this.isLoading.set(true);
-
       // const registerData: IRegister = this.registerForm.value;
-
       // this.authService.register(registerData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
       //   next: (response) => {
       //     this.isLoading.set(false);
@@ -219,7 +217,6 @@ export class ResetPassword {
       //   },
       // });
     } else {
-      // Mark all fields as touched to show validation errors
       Object.keys(this.registerForm.controls).forEach((key) => {
         this.registerForm.get(key)?.markAsTouched();
       });

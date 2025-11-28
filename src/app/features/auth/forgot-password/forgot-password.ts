@@ -76,15 +76,20 @@ export class ForgotPassword implements OnInit {
       this.authService
         .forgotPassword(phoneNumber)
         .pipe(takeUntilDestroyed(this.destroyRef))
-        .subscribe((res) => {
-          this.isLoading.set(false);
-          this.isSubmitted.set(false);
-          this.forgotPasswordForm.reset();
-          toast.success(res.message);
-          this.router.navigate(['/reset-password', phoneNumber]);
+        .subscribe({
+          next: (res) => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+            this.forgotPasswordForm.reset();
+            toast.success(res.message);
+            this.router.navigate(['/reset-password', phoneNumber]);
+          },
+          error: () => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+          },
         });
     } else {
-      this.isLoading.set(false);
       Object.keys(this.forgotPasswordForm.controls).forEach((key) => {
         this.forgotPasswordForm.get(key)?.markAsTouched();
       });

@@ -1,9 +1,7 @@
 .login-page {
-  min-height: 100vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  // background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 
   .login-container {
     width: 100%;
@@ -209,7 +207,17 @@
   background-size: cover !important ;
   background-repeat: no-repeat;
   width: 50% !important;
-  height: 100vh !important;
+  height: 100% !important;
+  .c-opacity {
+    background-color: #0e110fb2;
+  }
+  .c-p {
+    width: 233;
+    height: 48;
+    opacity: 1;
+    font-weight: 500;
+    font-size: 16px;
+  }
 }
 @media (max-width: 992px) {
   .c-bg {
