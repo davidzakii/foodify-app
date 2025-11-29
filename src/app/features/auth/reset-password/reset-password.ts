@@ -7,9 +7,11 @@ import {
   ValidationErrors,
   Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth';
-
+import { IResetPassword } from './interfaces/ireset-password';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { toast } from 'ngx-sonner';
 @Component({
   selector: 'app-reset-password',
   imports: [ReactiveFormsModule],
@@ -21,19 +23,24 @@ export class ResetPassword {
   private router = inject(Router);
   private authService = inject(AuthService);
   private destroyRef = inject(DestroyRef);
-  registerForm!: FormGroup;
+  private activatedRoute = inject(ActivatedRoute);
+  resetPasswordForm!: FormGroup;
   isSubmitted = signal<boolean>(false);
   isLoading = signal<boolean>(false);
   showPassword = signal<boolean>(false);
   showConfirmPassword = signal<boolean>(false);
-
+  phone = signal<string>('');
   ngOnInit(): void {
     this.initForm();
   }
 
   private initForm(): void {
-    this.registerForm = this.fb.group(
+    this.resetPasswordForm = this.fb.group(
       {
+        otp1: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
+        otp2: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
+        otp3: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
+        otp4: ['', [Validators.required, Validators.pattern(/^[0-9]$/)]],
         password: ['', [Validators.required, Validators.minLength(6)]],
         password_confirmation: ['', [Validators.required]],
       },
@@ -41,30 +48,6 @@ export class ResetPassword {
         validators: this.passwordMatchValidator,
       }
     );
-  }
-
-  // Custom Validators
-  private noWhitespaceValidator(control: AbstractControl): ValidationErrors | null {
-    const isWhitespace = (control.value || '').trim().length === 0;
-    return isWhitespace && control.value ? { whitespace: true } : null;
-  }
-
-  private egyptianPhoneValidator(control: AbstractControl): ValidationErrors | null {
-    const value = control.value;
-    if (!value) return null;
-
-    const validPrefixes = ['010', '011', '012', '015'];
-    const hasValidPrefix = validPrefixes.some((prefix) => value.startsWith(prefix));
-
-    if (!hasValidPrefix) {
-      return { invalidPrefix: true };
-    }
-
-    if (value.length !== 11) {
-      return { invalidLength: true };
-    }
-
-    return null;
   }
 
   private passwordMatchValidator(control: AbstractControl): ValidationErrors | null {
@@ -93,27 +76,18 @@ export class ResetPassword {
   }
 
   // Getters for form controls
-  get fullName() {
-    return this.registerForm.get('full_name');
-  }
 
-  get phone() {
-    return this.registerForm.get('phone');
+  get otp() {
+    const { otp1, otp2, otp3, otp4 } = this.resetPasswordForm.value;
+    return `${otp1}${otp2}${otp3}${otp4}`;
   }
 
   get password() {
-    return this.registerForm.get('password');
+    return this.resetPasswordForm.get('password');
   }
 
   get passwordConfirmation() {
-    return this.registerForm.get('password_confirmation');
-  }
-
-  // Only allow numbers in phone input
-  onPhoneInput(event: Event): void {
-    const input = event.target as HTMLInputElement;
-    input.value = input.value.replace(/[^0-9]/g, '');
-    this.phone?.setValue(input.value);
+    return this.resetPasswordForm.get('password_confirmation');
   }
 
   // Toggle password visibility
@@ -127,13 +101,13 @@ export class ResetPassword {
 
   // Check if field has specific error
   hasError(fieldName: string, errorType: string): boolean {
-    const field = this.registerForm.get(fieldName);
+    const field = this.resetPasswordForm.get(fieldName);
     return !!(field && field.hasError(errorType) && (field.touched || this.isSubmitted()));
   }
 
   // Get error message for field
   getErrorMessage(fieldName: string): string {
-    const field = this.registerForm.get(fieldName);
+    const field = this.resetPasswordForm.get(fieldName);
 
     if (!field || (!field.touched && !this.isSubmitted())) {
       return '';
@@ -191,35 +165,54 @@ export class ResetPassword {
   onSubmit(): void {
     this.isSubmitted.set(true);
 
-    if (this.registerForm.valid) {
+    if (this.resetPasswordForm.valid) {
       this.isLoading.set(true);
-      // const registerData: IRegister = this.registerForm.value;
-      // this.authService.register(registerData).pipe(takeUntilDestroyed(this.destroyRef)).subscribe({
-      //   next: (response) => {
-      //     this.isLoading.set(false);
 
-      //     this.isSubmitted.set(false);
-      //     const phone = this.phone?.value;
+      const resetPassword: IResetPassword = {
+        otp: this.otp,
+        password: this.password?.value,
+        password_confirmation: this.passwordConfirmation?.value,
+        phone: this.activatedRoute.snapshot.paramMap.get('phoneNumber') || '',
+      };
+      this.authService
+        .resetPassword(resetPassword)
+        .pipe(takeUntilDestroyed(this.destroyRef))
+        .subscribe({
+          next: (response) => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+            this.router.navigate(['/reset-password-success']);
 
-      //     if (phone) {
-      //       this.router.navigate(['/verify-otp', phone]);
-      //     } else {
-      //       toast.error('please enter your phone number');
-      //     }
-      //     toast.success(response.message);
-      //     this.registerForm.reset();
-      //   },
-      //   error: (error) => {
-      //     this.isLoading.set(false);
-      //     const errorMessage = error?.error?.message || 'Registration failed. Please try again.';
-      //     toast.error(errorMessage);
-      //     console.error('Registration error:', error);
-      //   },
-      // });
+            toast.success(response.message);
+            this.resetPasswordForm.reset();
+          },
+          error: (error) => {
+            this.isLoading.set(false);
+            this.isSubmitted.set(false);
+          },
+        });
     } else {
-      Object.keys(this.registerForm.controls).forEach((key) => {
-        this.registerForm.get(key)?.markAsTouched();
+      Object.keys(this.resetPasswordForm.controls).forEach((key) => {
+        this.resetPasswordForm.get(key)?.markAsTouched();
       });
+    }
+  }
+  moveToNext(event: any, next: string) {
+    if (event.target.value.length === 1) {
+      const nextField = this.resetPasswordForm.get(next);
+      const inputEl = document.querySelector(
+        `input[formControlName='${next}']`
+      ) as HTMLInputElement;
+      inputEl?.focus();
+    }
+  }
+
+  moveToPrev(event: any, prev: string) {
+    if (!event.target.value) {
+      const prevInput = document.querySelector(
+        `input[formControlName='${prev}']`
+      ) as HTMLInputElement;
+      prevInput?.focus();
     }
   }
 }

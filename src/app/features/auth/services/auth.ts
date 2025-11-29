@@ -3,6 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { environment } from '../../../core/environment/environment';
 import { BehaviorSubject, from, Observable, of, switchMap, tap } from 'rxjs';
 import { IRegister } from '../interfaces/iregister';
+import { IResetPassword } from '../reset-password/interfaces/ireset-password';
 @Injectable({
   providedIn: 'root',
 })
@@ -42,7 +43,9 @@ export class AuthService {
   verifyRegisterOtp(phone: string, otp: string): Observable<any> {
     return this.http.post<any>(environment.endpoints.auth.verifyRegisterOtp, { phone, otp });
   }
-
+  resetPassword(body: IResetPassword): Observable<{ message: string }> {
+    return this.http.post<{ message: string }>(environment.endpoints.auth.resetPassword, body);
+  }
   logout(): Observable<any> {
     const token = localStorage.getItem('token') || 'acb.ssj.sko';
     return this.http

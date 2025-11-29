@@ -73,6 +73,12 @@ export const routes: Routes = [
     canActivate: [afterLoginGuard],
   },
   {
+    path: 'reset-password-success',
+    loadComponent: () =>
+      import('./features/auth/change-password-correctly/change-password-correctly').then((m) => m.ChangePasswordCorrectly),
+    canActivate: [afterLoginGuard],
+  },
+  {
     path: '**',
     loadComponent: () =>
       import('./shared/components/not-found-page/not-found-page').then((m) => m.NotFoundPage),
