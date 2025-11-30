@@ -3,6 +3,7 @@
   <p class="fw-bold fs-2">No exist item</p>
 </div>
 }@else {
+<h3 class="m-3">Categories</h3>
 <div class="d-flex justify-content-center my-3 p-3 flex-wrap gap-4 align-items-end">
   @for (cat of categories(); track cat.id) {
   <div class="card h-100">
@@ -14,6 +15,7 @@
   </div>
   }
 </div>
+<h3 class="m-3">Dishes</h3>
 <div class="d-flex justify-content-center flex-wrap c-gap">
   @for (dish of dishes(); track dish.id) {
   <app-dishes-card [dish]="dish"></app-dishes-card>

@@ -102,10 +102,14 @@
         <button
           class="favorite-btn"
           (click)="onToggleFavorite()"
-          [class.active]="isFavorite"
+          [class.active]="isFavorite()"
           aria-label="Add to favorites"
         >
-          <i class="fa-heart" [class.fa-regular]="!isFavorite" [class.fa-solid]="isFavorite"></i>
+          <i
+            class="fa-heart"
+            [class.fa-regular]="!isFavorite()"
+            [class.fa-solid]="isFavorite()"
+          ></i>
         </button>
         <button class="btn btn-add" (click)="onAddToCart()">Add</button>
       </div>

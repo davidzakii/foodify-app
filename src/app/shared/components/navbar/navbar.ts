@@ -6,6 +6,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Iprofile } from '../../../features/profile/interfaces/iprofile';
 import { Profile } from '../../../features/profile/services/profile';
 import { FormsModule } from '@angular/forms';
+import { FavoriteServices } from '../../../features/favorite/services/favorite-services';
 
 @Component({
   selector: 'app-navbar',
@@ -18,6 +19,7 @@ export class Navbar {
   private router = inject(Router);
   private authService = inject(AuthService);
   private profileService = inject(Profile);
+  private favoritesService = inject(FavoriteServices);
   private destroyRes = inject(DestroyRef);
   user = signal<Iprofile | null>(null);
   isLoggedIn = signal<boolean>(false);
@@ -40,6 +42,13 @@ export class Navbar {
         .pipe(takeUntilDestroyed(this.destroyRes))
         .subscribe((res) => {
           this.user.set(res);
+        });
+      this.favoritesService.init();
+      this.favoritesService
+        .favoriteListAsObservable()
+        .pipe(takeUntilDestroyed(this.destroyRes))
+        .subscribe((res) => {
+          this.favoritesCount.set(res.meta.total);
         });
     }
   }

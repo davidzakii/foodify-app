@@ -23,7 +23,7 @@ export const environment = {
     },
     favorite: {
       myFavorite: '/api/favorites',
-      toggleFavorite: '/api/favorite',
+      toggleFavorite: (id: number) => `/api/favorite/${id}`,
     },
   },
 };

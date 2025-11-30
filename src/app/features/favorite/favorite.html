@@ -11,4 +11,10 @@
     <button type="button" class="btn-main w-25" (click)="goToCategory()">Explore Categories</button>
   </div>
 </div>
-}@else { }
+}@else {
+<div class="d-flex justify-content-center align-items-center flex-wrap c-gap c-vh my-3">
+  @for (dish of favorites(); track dish.id) {
+  <app-dishes-card [dish]="dish"></app-dishes-card>
+  }
+</div>
+}

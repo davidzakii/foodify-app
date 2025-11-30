@@ -41,7 +41,6 @@ export class Home implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res) => {
         this.recommended.set(res.data);
-        console.log(this.recommended());
       });
   }
   dishes(catId: number) {
