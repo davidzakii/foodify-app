@@ -1,15 +1,13 @@
 {
   "name": "foodify-app",
   "version": "0.0.0",
-  "type": "module",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
-    "build:ssr": "ng build --configuration production",
-    "serve:ssr": "node dist/foodify-app/server/server.mjs",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "serve:ssr:foodify-app": "node dist/foodify-app/server/server.mjs"
   },
   "prettier": {
     "printWidth": 100,
