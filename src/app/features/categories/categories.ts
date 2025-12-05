@@ -3,10 +3,12 @@ import { Router } from '@angular/router';
 import { ICategory } from './interfaces/icategory';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { CategoriesServices } from './services/categories';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-categories',
-  imports: [],
+  standalone: true,
+  imports: [NgOptimizedImage],
   templateUrl: './categories.html',
   styleUrl: './categories.scss',
 })

@@ -25,5 +25,10 @@ export const environment = {
       myFavorite: '/api/favorites',
       toggleFavorite: (id: number) => `/api/favorite/${id}`,
     },
+    cart: {
+      addToCart: (dishId: number) => `/api/cart/${dishId}`,
+      myCart: '/api/cart',
+      
+    },
   },
 };

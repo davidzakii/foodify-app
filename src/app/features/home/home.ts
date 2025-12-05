@@ -13,11 +13,12 @@ import { IDish } from '../dishes-card/interfaces/Idish';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { DishesCard } from '../dishes-card/dishes-card';
 import { DishesServices } from '../dishes-card/services/dishes-services';
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [DishesCard],
+  imports: [DishesCard, NgOptimizedImage],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   templateUrl: './home.html',
   styleUrl: './home.scss',

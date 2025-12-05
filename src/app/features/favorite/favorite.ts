@@ -4,9 +4,11 @@ import { IDish } from '../dishes-card/interfaces/Idish';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { Router } from '@angular/router';
 import { DishesCard } from '../dishes-card/dishes-card';
+import { NgOptimizedImage } from '@angular/common';
 @Component({
   selector: 'app-favorite',
-  imports: [DishesCard],
+  standalone: true,
+  imports: [DishesCard, NgOptimizedImage],
   templateUrl: './favorite.html',
   styleUrl: './favorite.scss',
 })
@@ -20,7 +22,9 @@ export class Favorite implements OnInit {
       .favoriteListAsObservable()
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((res) => {
-        this.favorites.set(res.data);
+        queueMicrotask(() => {
+          this.favorites.set(res.data);
+        });
       });
     this.favoriteService.init();
   }

@@ -3,10 +3,11 @@ import { IDish } from './interfaces/Idish';
 import { FavoriteServices } from '../favorite/services/favorite-services';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { toast } from 'ngx-sonner';
+import { NgOptimizedImage } from "@angular/common";
 @Component({
   selector: 'app-dishes-card',
   standalone: true,
-  imports: [],
+  imports: [NgOptimizedImage],
   templateUrl: './dishes-card.html',
   styleUrl: './dishes-card.scss',
 })

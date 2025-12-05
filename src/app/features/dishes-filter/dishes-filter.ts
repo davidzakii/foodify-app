@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, OnInit, signal } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoriesServices } from '../categories/services/categories';
 import { ICategory } from '../categories/interfaces/icategory';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
@@ -7,10 +7,12 @@ import { DishesServices } from '../dishes-card/services/dishes-services';
 import { IDish } from '../dishes-card/interfaces/Idish';
 import { forkJoin, map, switchMap } from 'rxjs';
 import { DishesCard } from '../dishes-card/dishes-card';
+import { NgOptimizedImage } from '@angular/common';
 
 @Component({
   selector: 'app-dishes-filter',
-  imports: [DishesCard],
+  standalone: true,
+  imports: [DishesCard, NgOptimizedImage],
   templateUrl: './dishes-filter.html',
   styleUrl: './dishes-filter.scss',
 })
@@ -19,6 +21,7 @@ export class DishesFilter implements OnInit {
   private activatedRoute = inject(ActivatedRoute);
   private categoryService = inject(CategoriesServices);
   private dishesServices = inject(DishesServices);
+  private router = inject(Router);
   query = signal<string>('');
   categories = signal<ICategory[]>([]);
   dishes = signal<IDish[]>([]);
@@ -49,8 +52,10 @@ export class DishesFilter implements OnInit {
       .subscribe({
         next: (allDishes) => {
           this.dishes.set(allDishes);
-          console.log('All dishes loaded:', this.dishes()); // Will have all data now
         },
       });
+  }
+  dishesCat(catId: number) {
+    this.router.navigate(['/dishes', catId]);
   }
 }

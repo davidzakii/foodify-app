@@ -14,7 +14,7 @@
     @for (cat of categories(); track cat.id) {
     <swiper-slide>
       <div class="category-card" (click)="dishes(cat.id)">
-        <img [src]="cat.image" [alt]="cat.name" />
+        <img [ngSrc]="cat.image" [alt]="cat.name" width="250" height="250" />
         <h3 class="category-name main-color">{{ cat.name }}</h3>
         <p class="category-count">{{ cat.dishes_count }} dishes</p>
       </div>

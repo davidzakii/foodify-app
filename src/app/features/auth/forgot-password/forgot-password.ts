@@ -16,6 +16,7 @@ import { toast } from 'ngx-sonner';
 
 @Component({
   selector: 'app-forgot-password',
+  standalone: true,
   imports: [FormsModule, ReactiveFormsModule, NgClass],
   templateUrl: './forgot-password.html',
   styleUrl: './forgot-password.scss',

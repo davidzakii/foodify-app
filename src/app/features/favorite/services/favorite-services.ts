@@ -21,7 +21,6 @@ export class FavoriteServices {
       .subscribe({
         next: (res) => {
           this.favoriteList.next(res);
-          console.log('favobs', this.favoriteList.value);
         },
       });
   }

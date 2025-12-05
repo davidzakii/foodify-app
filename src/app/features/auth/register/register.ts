@@ -15,6 +15,7 @@ import { IRegister } from '../interfaces/iregister';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [RouterLink, FormsModule, ReactiveFormsModule],
   templateUrl: './register.html',
   styleUrl: './register.scss',

@@ -7,11 +7,12 @@ import { Iprofile } from '../../../features/profile/interfaces/iprofile';
 import { Profile } from '../../../features/profile/services/profile';
 import { FormsModule } from '@angular/forms';
 import { FavoriteServices } from '../../../features/favorite/services/favorite-services';
+import { NgOptimizedImage } from "@angular/common";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [RouterLink, RouterLinkActive, FormsModule],
+  imports: [RouterLink, RouterLinkActive, FormsModule, NgOptimizedImage],
   templateUrl: './navbar.html',
   styleUrl: './navbar.scss',
 })
