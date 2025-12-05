@@ -6,9 +6,10 @@
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
+    "build:ssr": "ng build --configuration production",
+    "serve:ssr": "node dist/foodify-app/server/server.mjs",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "serve:ssr:foodify-app": "node dist/foodify-app/server/server.mjs"
+    "test": "ng test"
   },
   "prettier": {
     "printWidth": 100,
