@@ -1,10 +1,4 @@
 {
-  "builds": [
-    {
-      "src": "dist/foodify/browser/**",
-      "use": "@vercel/static"
-    }
-  ],
   "routes": [
     {
       "src": "/(.*)",
